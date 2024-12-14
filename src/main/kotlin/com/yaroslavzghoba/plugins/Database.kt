@@ -6,13 +6,13 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.DatabaseConfig
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 
+/**
+ * Connect to the database.
+ *
+ * @param dbConnectionConfig Database connection configuration. Includes the url of the database
+ * address and the user on whose behalf the database queries will be performed.
+ */
 @Suppress("UnusedReceiverParameter")
-        /**
-         * Connect to the database.
-         *
-         * @param dbConnectionConfig Database connection configuration. Includes the url of the database
-         * address and the user on whose behalf the database queries will be performed.
-         */
 fun Application.configureDatabase(dbConnectionConfig: DbConnectionConfig) {
     Database.connect(
         url = dbConnectionConfig.url,
