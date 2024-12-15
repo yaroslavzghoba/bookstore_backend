@@ -4,9 +4,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * The object that represents a book.
+ * The object that represents a passed book in client's request.
  *
- * @param bookId Unique book identifier.
  * @param title A title of the book.
  * @param author An author of the book.
  * @param genre A genre of the book.
@@ -15,8 +14,7 @@ import kotlinx.serialization.Serializable
  * @param supplierId An unique id of the books' supplier.
  */
 @Serializable
-data class Book(
-    @SerialName("book_id") val bookId: Long?,
+data class BookRequest(
     @SerialName("title") val title: String,
     @SerialName("author") val author: String?,
     @SerialName("genre") val genre: String?,
