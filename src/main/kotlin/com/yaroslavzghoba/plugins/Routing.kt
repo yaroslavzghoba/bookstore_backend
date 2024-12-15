@@ -8,6 +8,11 @@ import com.yaroslavzghoba.routing.books.getBookById
 import com.yaroslavzghoba.routing.books.getBooks
 import com.yaroslavzghoba.routing.books.postBook
 import com.yaroslavzghoba.routing.books.putBook
+import com.yaroslavzghoba.routing.suppliers.deleteSupplier
+import com.yaroslavzghoba.routing.suppliers.getSupplierById
+import com.yaroslavzghoba.routing.suppliers.getSuppliers
+import com.yaroslavzghoba.routing.suppliers.postSupplier
+import com.yaroslavzghoba.routing.suppliers.putSupplier
 import io.ktor.server.application.Application
 import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
@@ -21,7 +26,7 @@ fun Application.configureRouting(
     supplierStorage: SupplierStorage,
 ) {
     routing {
-        route("/books") {
+        route(path = "/books") {
             get(
                 path = "",
                 body = RouteHandlersProvider.Books.getBooks(bookStorage = bookStorage),
@@ -47,6 +52,35 @@ fun Application.configureRouting(
             delete(
                 path = "/{book_id}",
                 body = RouteHandlersProvider.Books.deleteBook(bookStorage = bookStorage)
+            )
+        }
+        route(path = "/suppliers") {
+            get(
+                path = "",
+                body = RouteHandlersProvider.Suppliers
+                    .getSuppliers(supplierStorage = supplierStorage),
+            )
+            get(
+                path = "/{supplier_id}",
+                body = RouteHandlersProvider.Suppliers
+                    .getSupplierById(supplierStorage = supplierStorage),
+            )
+            post(
+                path = "",
+                body = RouteHandlersProvider.Suppliers.postSupplier(
+                    supplierStorage = supplierStorage,
+                ),
+            )
+            put(
+                path = "/{supplier_id}",
+                body = RouteHandlersProvider.Suppliers.putSupplier(
+                    supplierStorage = supplierStorage,
+                ),
+            )
+            delete(
+                path = "/{supplier_id}",
+                body = RouteHandlersProvider.Suppliers
+                    .deleteSupplier(supplierStorage = supplierStorage),
             )
         }
     }

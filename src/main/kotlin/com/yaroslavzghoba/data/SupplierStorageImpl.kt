@@ -42,11 +42,11 @@ class SupplierStorageImpl : SupplierStorage {
             ?: throw NoSuchElementException("Corresponding book is not found in storage")
     }
 
-    override suspend fun deleteAll() {
+    override suspend fun deleteAll(): Unit = suspendTransaction {
         SuppliersTable.deleteAll()
     }
 
-    override suspend fun deleteById(id: Long) {
+    override suspend fun deleteById(id: Long): Unit = suspendTransaction {
         SuppliersTable.deleteWhere { SuppliersTable.id eq id }
     }
 }
